@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Darwi/OneDrive/Documentos/NetBeansProjects/SistemasVentasWeb/src/java/modelo/EmpleadoDAO.java</file>
-            <file>file:/C:/Users/Darwi/OneDrive/Documentos/NetBeansProjects/SistemasVentasWeb/src/java/controlador/Validar.java</file>
-            <file>file:/C:/Users/Darwi/OneDrive/Documentos/NetBeansProjects/SistemasVentasWeb/web/principal.jsp</file>
-            <file>file:/C:/Users/Darwi/OneDrive/Documentos/NetBeansProjects/SistemasVentasWeb/web/index.jsp</file>
+            <file>file:/C:/Users/Darwi/OneDrive/Documentos/NetBeansProjects/SistemasVentasWeb/src/java/modelo/Producto.java</file>
+            <file>file:/C:/Users/Darwi/OneDrive/Documentos/NetBeansProjects/SistemasVentasWeb/src/java/modelo/Venta.java</file>
+            <file>file:/C:/Users/Darwi/OneDrive/Documentos/NetBeansProjects/SistemasVentasWeb/web/registrarVenta.jsp</file>
+            <file>file:/C:/Users/Darwi/OneDrive/Documentos/NetBeansProjects/SistemasVentasWeb/src/java/modelo/ProductoDAO.java</file>
             <file>file:/C:/Users/Darwi/OneDrive/Documentos/NetBeansProjects/SistemasVentasWeb/src/java/controlador/Controlador.java</file>
-            <file>file:/C:/Users/Darwi/OneDrive/Documentos/NetBeansProjects/SistemasVentasWeb/src/java/modelo/Empleado.java</file>
+            <file>file:/C:/Users/Darwi/OneDrive/Documentos/NetBeansProjects/SistemasVentasWeb/web/empleado.jsp</file>
         </group>
     </open-files>
 </project-private>
