@@ -9,6 +9,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 import modelo.Cliente;
 import modelo.ClienteDAO;
@@ -16,6 +17,7 @@ import modelo.Empleado;
 import modelo.EmpleadoDAO;
 import modelo.Producto;
 import modelo.ProductoDAO;
+import modelo.Venta;
 
 /**
  *
@@ -42,6 +44,17 @@ public class Controlador extends HttpServlet {
     int ide;
     int idc;
     int idp;
+
+    Venta v = new Venta();
+    List<Venta> lista = new ArrayList<>();
+
+    int item;
+    int cod;
+    String descripcion;
+    double precio;
+    int cantidad;
+    double subTotal;
+    double totalPagar;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String menu = request.getParameter("menu");
@@ -123,6 +136,38 @@ public class Controlador extends HttpServlet {
                     c.setDni(dni);
                     c = cDao.buscar(dni);
                     request.setAttribute("c", c);
+                    break;
+                case "BuscarProducto":
+                    int id = Integer.parseInt(request.getParameter("codigoProducto"));
+                    p = pDao.listarId(id);
+                    request.setAttribute("prod", p);
+                    request.setAttribute("lista", lista);
+                    break;
+                case "Agregar":
+                    totalPagar = 0.0;
+
+                    item = item + 1;
+                    cod = p.getId();
+                    descripcion = request.getParameter("nombreProducto");
+                    precio = Double.parseDouble(request.getParameter("precio"));
+                    cantidad = Integer.parseInt(request.getParameter("cantidad"));
+                    subTotal = precio * cantidad;
+
+                    v = new Venta();
+                    v.setItem(item);
+                    v.setId(cod);
+                    v.setDescripcion(descripcion);
+                    v.setMonto(precio);
+                    v.setCantidad(cantidad);
+                    v.setSubTotal(subTotal);
+                    lista.add(v);
+
+                    for (int i = 0; i < lista.size(); i++) {
+                        totalPagar = totalPagar + lista.get(i).getSubTotal();
+                    }
+
+                    request.setAttribute("totalPagar", totalPagar);
+                    request.setAttribute("lista", lista);
                     break;
                 default:
                     request.getRequestDispatcher("registrarVenta.jsp").forward(request, response);

@@ -93,17 +93,17 @@ public class ClienteDAO {
         return cli;
     }
 
-    public int agregar(Cliente em) {
+    public int agregar(Cliente c) {
         String sql = "INSERT INTO cliente(Dni, Nombres, Direccion, Estado) VALUES (?, ?, ?, ?)";
 
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
 
-            ps.setString(1, em.getDni());
-            ps.setString(2, em.getNom());
-            ps.setString(3, em.getDireccion());
-            ps.setString(4, em.getEstado());
+            ps.setString(1, c.getDni());
+            ps.setString(2, c.getNom());
+            ps.setString(3, c.getDireccion());
+            ps.setString(4, c.getEstado());
 
             ps.executeUpdate();
         } catch (Exception e) {
@@ -112,18 +112,18 @@ public class ClienteDAO {
         return r;
     }
 
-    public int actualizar(Cliente em) {
+    public int actualizar(Cliente c) {
         String sql = "UPDATE cliente SET Dni=?, Nombres=?, Direccion=?, Estado=? WHERE idCliente=?";
 
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
 
-            ps.setString(1, em.getDni());
-            ps.setString(2, em.getNom());
-            ps.setString(3, em.getDireccion());
-            ps.setString(4, em.getEstado());
-            ps.setInt(6, em.getId());
+            ps.setString(1, c.getDni());
+            ps.setString(2, c.getNom());
+            ps.setString(3, c.getDireccion());
+            ps.setString(4, c.getEstado());
+            ps.setInt(6, c.getId());
 
             ps.executeUpdate();
         } catch (Exception e) {
