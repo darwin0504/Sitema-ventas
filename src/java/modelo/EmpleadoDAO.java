@@ -84,11 +84,11 @@ public class EmpleadoDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                emp.setDni(rs.getString(1));
-                emp.setNom(rs.getString(2));
-                emp.setTel(rs.getString(3));
-                emp.setEstado(rs.getString(4));
-                emp.setUser(rs.getString(5));
+                emp.setDni(rs.getString(2));
+                emp.setNom(rs.getString(3));
+                emp.setTel(rs.getString(4));
+                emp.setEstado(rs.getString(5));
+                emp.setUser(rs.getString(6));
             }
         } catch (Exception e) {
         }

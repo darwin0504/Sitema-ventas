@@ -23,16 +23,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Controlador?menu=productos" target="myFrame">Producto</a>
+                        <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Controlador?menu=productos&accion=Listar" target="myFrame">Producto</a>
                     </li>
                     <li class="nav-item">
                         <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Controlador?menu=empleado&accion=Listar"  target="myFrame">Empleado</a>
                     </li>
                     <li class="nav-item">
-                        <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Controlador?menu=clientes"  target="myFrame">Clientes</a>
+                        <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Controlador?menu=clientes&accion=Listar"  target="myFrame">Clientes</a>
                     </li>
                     <li class="nav-item">
-                        <a  style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Controlador?menu=registrarVenta"  target="myFrame">Nueva Venta</a>
+                        <a  style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Controlador?menu=registrarVenta&accion=default"  target="myFrame">Nueva Venta</a>
                     </li>
                 </ul>
                 <div class="dropdown">
