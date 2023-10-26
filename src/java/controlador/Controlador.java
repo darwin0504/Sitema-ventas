@@ -144,8 +144,8 @@ public class Controlador extends HttpServlet {
                     request.setAttribute("lista", lista);
                     break;
                 case "Agregar":
+                    request.setAttribute("c", c);
                     totalPagar = 0.0;
-
                     item = item + 1;
                     cod = p.getId();
                     descripcion = request.getParameter("nombreProducto");

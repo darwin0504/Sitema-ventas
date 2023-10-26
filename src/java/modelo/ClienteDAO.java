@@ -40,6 +40,7 @@ public class ClienteDAO {
                 c.setEstado(rs.getString(5));
             }
         } catch (Exception e) {
+            System.out.println("Error en Cliente buscar: " + e.getMessage());
         }
 
         return c;
@@ -65,6 +66,7 @@ public class ClienteDAO {
                 lista.add(cl);
             }
         } catch (Exception e) {
+            System.out.println("Error en Cliente listar: " + e.getMessage());
         }
 
         return lista;
@@ -88,6 +90,7 @@ public class ClienteDAO {
                 cli.setEstado(rs.getString(5));
             }
         } catch (Exception e) {
+            System.out.println("Error en Cliente listarId: " + e.getMessage());
         }
 
         return cli;
@@ -107,6 +110,7 @@ public class ClienteDAO {
 
             ps.executeUpdate();
         } catch (Exception e) {
+            System.out.println("Error en Cliente agregar: " + e.getMessage());
         }
 
         return r;
@@ -127,6 +131,7 @@ public class ClienteDAO {
 
             ps.executeUpdate();
         } catch (Exception e) {
+            System.out.println("Error en Cliente actualizar: " + e.getMessage());
         }
 
         return r;
@@ -140,6 +145,7 @@ public class ClienteDAO {
             ps = con.prepareStatement(sql);
             ps.executeUpdate();
         } catch (Exception e) {
+            System.out.println("Error en Cliente eliminar: " + e.getMessage());
         }
     }
 }

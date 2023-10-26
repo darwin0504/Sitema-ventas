@@ -43,6 +43,7 @@ public class ProductoDAO {
                 lista.add(pr);
             }
         } catch (Exception e) {
+            System.out.println("Error en Producto listar" + e.getMessage());
         }
 
         return lista;
@@ -66,6 +67,7 @@ public class ProductoDAO {
                 pr.setEstado(rs.getString(5));
             }
         } catch (Exception e) {
+            System.out.println("Error en Producto listarId" + e.getMessage());
         }
 
         return pr;
@@ -85,6 +87,7 @@ public class ProductoDAO {
 
             ps.executeUpdate();
         } catch (Exception e) {
+            System.out.println("Error en Producto agregar" + e.getMessage());
         }
 
         return r;
@@ -105,6 +108,7 @@ public class ProductoDAO {
 
             ps.executeUpdate();
         } catch (Exception e) {
+            System.out.println("Error en Producto actualizar" + e.getMessage());
         }
 
         return r;
@@ -118,6 +122,7 @@ public class ProductoDAO {
             ps = con.prepareStatement(sql);
             ps.executeUpdate();
         } catch (Exception e) {
+            System.out.println("Error en Producto eliminar" + e.getMessage());
         }
     }
 }

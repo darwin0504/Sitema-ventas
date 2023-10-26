@@ -5,6 +5,14 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import= "modelo.Empleado" %>
+<% 
+    HttpSession sesion = request.getSession();  
+    Empleado emp = (Empleado) sesion.getAttribute("usuario");
+    System.out.println(emp);
+   
+    if(emp != null) {
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -61,3 +69,9 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>    
     </body>
 </html>
+<%  
+    } else {
+        System.out.println("Llega else");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
+%>

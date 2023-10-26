@@ -10,6 +10,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import modelo.Empleado;
 import modelo.EmpleadoDAO;
 
@@ -28,10 +29,9 @@ public class Validar extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     EmpleadoDAO eDao = new EmpleadoDAO();
     Empleado em = new Empleado();
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -40,7 +40,7 @@ public class Validar extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Validar</title>");            
+            out.println("<title>Servlet Validar</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Validar at " + request.getContextPath() + "</h1>");
@@ -76,20 +76,25 @@ public class Validar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String accion = request.getParameter("accion");
 
-         if (accion.equalsIgnoreCase("Ingresar")) {
-            String user = request.getParameter("txtUser");           
+        if (accion.equalsIgnoreCase("Ingresar")) {
+            String user = request.getParameter("txtUser");
             String pass = request.getParameter("txtPass");
 
             em = eDao.Validar(user, pass);
-           
-             if (em.getUser() != null) {
-                 request.setAttribute("usuario", em);
-                 request.getRequestDispatcher("Controlador?menu=principal").forward(request, response);
-             } else {
-                 request.getRequestDispatcher("index.jsp").forward(request, response);
-             }
+
+            if (em.getUser() != null) {
+                HttpSession sesion = request.getSession();
+                System.out.println("Sesion numero: " + sesion.getId());
+
+                sesion.setAttribute("usuario", em);
+                request.getRequestDispatcher("Controlador?menu=principal").forward(request, response);
+            } else {
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
         } else {
-             request.getRequestDispatcher("index.jsp").forward(request, response);
+            HttpSession sesion = request.getSession();
+            sesion.invalidate();
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 
