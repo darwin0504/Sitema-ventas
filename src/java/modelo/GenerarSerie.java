@@ -48,8 +48,8 @@ public class GenerarSerie {
             numero = "0000000" + this.dato;
         }
 
-        if (this.dato >= 10) {
-            numero = "0000000" + this.dato;
+        if (this.dato >= 1) {
+            numero = "00000000" + this.dato;
         }
         
         return this.numero;

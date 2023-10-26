@@ -163,7 +163,7 @@ public class Controlador extends HttpServlet {
 
                     v = new Venta();
                     v.setItem(item);
-                    v.setId(cod);
+                    v.setIdProducto(cod);
                     v.setDescripcion(descripcion);
                     v.setMonto(precio);
                     v.setCantidad(cantidad);
@@ -177,7 +177,33 @@ public class Controlador extends HttpServlet {
                     request.setAttribute("totalPagar", totalPagar);
                     request.setAttribute("lista", lista);
                     break;
+                case "GenerarVenta":
+                    // Guardar
+                    v.setIdCliente(c.getId());
+                    v.setIdEmpleado(2);
+                    v.setNumSerie(numeroSerie);
+                    v.setFecha("2023-10-25");
+                    v.setMonto(totalPagar);
+                    v.setEstado("1");
+                    vDao.guardarVenta(v);
+
+                    // Guardar detalle
+                    int idV = Integer.parseInt(vDao.idVenta());
+
+                    for (int i = 0; i < lista.size(); i++) {
+                        v = new Venta();
+                        v.setId(idV);
+                        v.setIdProducto(lista.get(i).getIdProducto());
+                        v.setCantidad(lista.get(i).getCantidad());
+                        v.setMonto(lista.get(i).getMonto());
+                        vDao.guardarDetalleVenta(v);
+                    }
+                    break;
                 default:
+                    v = new Venta();
+                    lista = new ArrayList<>();
+                    item = 0;
+                    totalPagar = 0.0;
                     numeroSerie = vDao.generarSerie();
 
                     if (numeroSerie == null) {
@@ -189,7 +215,7 @@ public class Controlador extends HttpServlet {
 
                         GenerarSerie gS = new GenerarSerie();
                         numeroSerie = gS.numeroSerie(incrementar);
-                        
+
                         request.setAttribute("numSerie", numeroSerie);
                     }
 
