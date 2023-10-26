@@ -78,7 +78,6 @@ public class EmpleadoDAO {
         Empleado emp = new Empleado();
 
         String sql = "SELECT * FROM empleado WHERE idEmpleado=" + id;
-        List<Empleado> lista = new ArrayList<>();
 
         try {
             con = cn.Conexion();

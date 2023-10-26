@@ -12,11 +12,18 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-        <title>Registrar venta</title>
+        <title>Ventas</title>
+        <style>
+            @media print {
+                .parteDatos, .btn, .accion {
+                    display: none;
+                }
+            }
+        </style>
     </head>
     <body>
         <div class="d-flex">
-            <div class="col-sm-5">
+            <div class="col-lg-5 parteDatos">
                 <div class="card">
                     <form action="Controlador?menu=registrarVenta" method="POST">
                         <div class="card-body">
@@ -29,7 +36,7 @@
                                     <input type="submit" name="accion" value="BuscarCliente" class="btn btn-outline-info" ></<input>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" name="nombreCliente" value="${c.getNom()}" class="form-control" placeholder="Datos cliente"></<input>
+                                    <input type="text" name="nombreCliente" value="${c.getNom()}" class="form-control" placeholder="Datos cliente" disabled></<input>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -41,7 +48,7 @@
                                     <input type="submit" name="accion" value="BuscarProducto" class="btn btn-outline-info" ></<input>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" name="nombreProducto" value="${prod.getNom()}" class="form-control" placeholder="Datos producto"></<input>
+                                    <input type="text" name="nombreProducto" value="${prod.getNom()}" class="form-control" placeholder="Datos producto" disabled></<input>
                                 </div>
                             </div>
                             <div class="form-group d-flex">
@@ -52,7 +59,7 @@
                                     <input type="number" name="cantidad" value="1" class="form-control" placeholder=""></<input>
                                 </div>
                                 <div  class="col-sm-3">
-                                    <input type="text" name="stock" value="${prod.getStock()}" class="form-control" placeholder="stock"></<input>
+                                    <input type="text" name="stock" value="${prod.getStock()}" class="form-control" placeholder="stock" disabled></<input>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -64,7 +71,7 @@
                     </form>
                 </div>
             </div>
-            <div  class="col-sm-7">
+            <div  class="col-lg-7">
                 <div  class="card">
                     <div  class="card-body">
                         <div class="d-flex col-sm-5 ml-auto">
@@ -81,7 +88,7 @@
                                     <th>Precio</th>
                                     <th>Cantidad</th>
                                     <th>SubTotal</th>
-                                    <th>Acciones</th>
+                                    <th class="accion">Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -104,7 +111,7 @@
                     </div>
                     <div class="card-footer d-flex">
                         <div class="col-sm-6">
-                            <a href="Controlador?menu=registrarVenta&accion=GenerarVenta" class="btn btn-success">Generar venta</a>
+                            <a href="Controlador?menu=registrarVenta&accion=GenerarVenta" onclick="print()" class="btn btn-success">Generar venta</a>
                             <input type="submit" name="accion"  value="Cancelar" class="btn btn-danger">
                         </div>
                         <div class="col-sm-3 ml-auto">

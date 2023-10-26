@@ -76,7 +76,6 @@ public class ClienteDAO {
         Cliente cli = new Cliente();
 
         String sql = "SELECT * FROM cliente WHERE idCliente=" + id;
-        List<Cliente> lista = new ArrayList<>();
 
         try {
             con = cn.Conexion();

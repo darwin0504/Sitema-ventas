@@ -72,8 +72,8 @@ public class Controlador extends HttpServlet {
         if (menu.equals("empleado")) {
             switch (accion) {
                 case "Listar":
-                    List lista = eDao.listar();
-                    request.setAttribute("empleado", lista);
+                    List listar = eDao.listar();
+                    request.setAttribute("empleado", listar);
                     break;
                 case "Agregar":
                     String dni = request.getParameter("txtDni");
@@ -182,13 +182,13 @@ public class Controlador extends HttpServlet {
                     for (int i = 0; i < lista.size(); i++) {
                         Producto pr = new Producto();
 
-                        int cantidad = lista.get(i).getCantidad();
+                        int cantidadProd = lista.get(i).getCantidad();
                         int idProducto = lista.get(i).getIdProducto();
 
                         ProductoDAO prDao = new ProductoDAO();
                         pr = prDao.buscar(idProducto);
 
-                        int sac = pr.getStock() - cantidad;
+                        int sac = pr.getStock() - cantidadProd;
                         prDao.actualizarStock(idProducto, sac);
                     }
 

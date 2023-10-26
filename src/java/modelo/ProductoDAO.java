@@ -27,7 +27,6 @@ public class ProductoDAO {
         Producto p = new Producto();
 
         String sql = "SELECT * FROM producto WHERE idProducto=" + id;
-        List<Producto> lista = new ArrayList<>();
 
         try {
             con = cn.Conexion();
