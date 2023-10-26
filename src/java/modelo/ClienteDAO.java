@@ -126,7 +126,7 @@ public class ClienteDAO {
             ps.setString(2, c.getNom());
             ps.setString(3, c.getDireccion());
             ps.setString(4, c.getEstado());
-            ps.setInt(6, c.getId());
+            ps.setInt(5, c.getId());
 
             ps.executeUpdate();
         } catch (Exception e) {

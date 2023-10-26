@@ -41,7 +41,7 @@ public class ProductoDAO {
                 p.setEstado(rs.getString(5));
             }
         } catch (Exception e) {
-            System.out.println("Error en Producto buscar" + e.getMessage());
+            System.out.println("Error en Producto buscar: " + e.getMessage());
         }
 
         return p;
@@ -59,7 +59,7 @@ public class ProductoDAO {
             ps.executeUpdate();
 
         } catch (Exception e) {
-            System.out.println("Error en Producto actualizarStock" + e.getMessage());
+            System.out.println("Error en Producto actualizarStock: " + e.getMessage());
         }
 
         return r;
@@ -85,7 +85,7 @@ public class ProductoDAO {
                 lista.add(pr);
             }
         } catch (Exception e) {
-            System.out.println("Error en Producto listar" + e.getMessage());
+            System.out.println("Error en Producto listar: " + e.getMessage());
         }
 
         return lista;
@@ -109,7 +109,7 @@ public class ProductoDAO {
                 pr.setEstado(rs.getString(5));
             }
         } catch (Exception e) {
-            System.out.println("Error en Producto listarId" + e.getMessage());
+            System.out.println("Error en Producto listarId: " + e.getMessage());
         }
 
         return pr;
@@ -129,28 +129,28 @@ public class ProductoDAO {
 
             ps.executeUpdate();
         } catch (Exception e) {
-            System.out.println("Error en Producto agregar" + e.getMessage());
+            System.out.println("Error en Producto agregar: " + e.getMessage());
         }
 
         return r;
     }
 
     public int actualizar(Producto p) {
-        String sql = "UPDATE producto SET Nombres=?, Precio=?, Stock=?, Estado=?, User=? WHERE idProducto=?";
+        String sql = "UPDATE producto SET Nombres=?, Precio=?, Stock=?, Estado=? WHERE idProducto=?";
 
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
 
-            ps.setString(2, p.getNom());
-            ps.setDouble(1, p.getPrecio());
+            ps.setString(1, p.getNom());
+            ps.setDouble(2, p.getPrecio());
             ps.setInt(3, p.getStock());
             ps.setString(4, p.getEstado());
-            ps.setInt(6, p.getId());
+            ps.setInt(5, p.getId());
 
             ps.executeUpdate();
         } catch (Exception e) {
-            System.out.println("Error en Producto actualizar" + e.getMessage());
+            System.out.println("Error en Producto actualizar: " + e.getMessage());
         }
 
         return r;
@@ -164,7 +164,7 @@ public class ProductoDAO {
             ps = con.prepareStatement(sql);
             ps.executeUpdate();
         } catch (Exception e) {
-            System.out.println("Error en Producto eliminar" + e.getMessage());
+            System.out.println("Error en Producto eliminar: " + e.getMessage());
         }
     }
 }
