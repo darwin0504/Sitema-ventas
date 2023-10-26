@@ -20,4 +20,23 @@ public class VentaDAO {
     PreparedStatement ps;
     ResultSet rs;
     int r;
+
+    public String generarSerie() {
+        String numeroSerie = "";
+        String sql = "SELECT max(NumeroSerie) FROM ventas";
+
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                numeroSerie = rs.getString(1);
+            }
+        } catch (Exception e) {
+            System.out.println("Error en Producto listar" + e.getMessage());
+        }
+
+        return numeroSerie;
+    }
 }

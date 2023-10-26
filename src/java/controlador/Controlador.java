@@ -15,9 +15,11 @@ import modelo.Cliente;
 import modelo.ClienteDAO;
 import modelo.Empleado;
 import modelo.EmpleadoDAO;
+import modelo.GenerarSerie;
 import modelo.Producto;
 import modelo.ProductoDAO;
 import modelo.Venta;
+import modelo.VentaDAO;
 
 /**
  *
@@ -55,6 +57,9 @@ public class Controlador extends HttpServlet {
     int cantidad;
     double subTotal;
     double totalPagar;
+
+    String numeroSerie;
+    VentaDAO vDao = new VentaDAO();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String menu = request.getParameter("menu");
@@ -135,11 +140,14 @@ public class Controlador extends HttpServlet {
                     String dni = request.getParameter("codigoCliente");
                     c.setDni(dni);
                     c = cDao.buscar(dni);
+
                     request.setAttribute("c", c);
                     break;
                 case "BuscarProducto":
                     int id = Integer.parseInt(request.getParameter("codigoProducto"));
                     p = pDao.listarId(id);
+
+                    request.setAttribute("c", c);
                     request.setAttribute("prod", p);
                     request.setAttribute("lista", lista);
                     break;
@@ -170,6 +178,21 @@ public class Controlador extends HttpServlet {
                     request.setAttribute("lista", lista);
                     break;
                 default:
+                    numeroSerie = vDao.generarSerie();
+
+                    if (numeroSerie == null) {
+                        numeroSerie = "00000001";
+
+                        request.setAttribute("numSerie", numeroSerie);
+                    } else {
+                        int incrementar = Integer.parseInt(numeroSerie);
+
+                        GenerarSerie gS = new GenerarSerie();
+                        numeroSerie = gS.numeroSerie(incrementar);
+                        
+                        request.setAttribute("numSerie", numeroSerie);
+                    }
+
                     request.getRequestDispatcher("registrarVenta.jsp").forward(request, response);
             }
             request.getRequestDispatcher("registrarVenta.jsp").forward(request, response);
