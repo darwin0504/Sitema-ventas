@@ -11,28 +11,27 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/styles.css">
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="container mt-4 col-lg-4"> 
-            <div class="card col-sm-10">
-                <div class="card-body">
-                    <form class="form-sing" action="Validar" method="POST">
-                        <div class="form-group  text-center">
-                            <h3>Login</h3>
-                            <img src="img/logo.jpg"  class="img-fluid rounded-circle"/>
-                            <label>Bienvenidos al sistema</label>
-                        </div>
-                        <div class="form-group">
-                            <label>Usuario:</label>        
-                            <input type="text" name="txtUser" class="form-control"></input>
-                        </div>
-                        <div class="form-group">
-                            <label>Password:</label>
-                             <input type="password" name="txtPass" class="form-control"></input>
-                        </div>
-                        <input type="submit" name="accion" value="Ingresar" class="btn btn-primary">
-                    </form>
+        <div class="centered">
+            <div class="col-md-4">
+                <div class="card border-primary shadow-lg">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">Iniciar Sesión</h3>
+                        <form class="form-signin" action="Validar" method="POST">
+                            <div class="form-group">
+                                <label for="txtUser">Usuario:</label>
+                                <input type="text" id="txtUser" name="txtUser" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtPass">Contraseña:</label>
+                                <input type="password" id="txtPass" name="txtPass" class="form-control" required>
+                            </div>
+                            <button type="submit" name="accion" value="Ingresar" class="btn btn-primary btn-block">Ingresar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

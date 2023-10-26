@@ -1,0 +1,25 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 26/10/2023, 12:54:49 a. m.
+    Author     : Darwi
+*/
+
+body {
+    /* background-color: #000;
+    color: #007bff;*/
+    background-color: #f8f9fa;
+}
+.centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.card {
+    border-radius: 12px !important;
+  /*  background-color: #1a1a1a;
+    color: #fff;*/
+}

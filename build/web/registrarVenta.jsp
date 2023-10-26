@@ -12,6 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+         <link rel="stylesheet" href="css/styles.css">
         <title>Ventas</title>
         <style>
             @media print {
@@ -24,7 +25,7 @@
     <body>
         <div class="d-flex">
             <div class="col-lg-5 parteDatos">
-                <div class="card">
+                <div class="card border-primary shadow">
                     <form action="Controlador?menu=registrarVenta" method="POST">
                         <div class="card-body">
                             <div class="form-group">
@@ -72,7 +73,7 @@
                 </div>
             </div>
             <div  class="col-lg-7">
-                <div  class="card">
+                <div  class="card border-primary shadow">
                     <div  class="card-body">
                         <div class="d-flex col-sm-5 ml-auto">
                             <label class="mt-1 mr-2">No.serie: </label>
