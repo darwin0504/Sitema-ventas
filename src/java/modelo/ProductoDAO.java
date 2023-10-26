@@ -23,6 +23,49 @@ public class ProductoDAO {
     ResultSet rs;
     int r;
 
+    public Producto buscar(int id) {
+        Producto p = new Producto();
+
+        String sql = "SELECT * FROM producto WHERE idProducto=" + id;
+        List<Producto> lista = new ArrayList<>();
+
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                p.setId(rs.getInt(1));
+                p.setNom(rs.getString(2));
+                p.setPrecio(rs.getDouble(3));
+                p.setStock(rs.getInt(4));
+                p.setEstado(rs.getString(5));
+            }
+        } catch (Exception e) {
+            System.out.println("Error en Producto buscar" + e.getMessage());
+        }
+
+        return p;
+    }
+
+    public int actualizarStock(int id, int stock) {
+        String sql = "UPDATE producto SET Stock=? WHERE idProducto=?";
+
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(sql);
+
+            ps.setInt(1, stock);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error en Producto actualizarStock" + e.getMessage());
+        }
+
+        return r;
+    }
+
     // CRUD
     public List listar() {
         String sql = "SELECT * FROM producto";

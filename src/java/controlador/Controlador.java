@@ -178,6 +178,20 @@ public class Controlador extends HttpServlet {
                     request.setAttribute("lista", lista);
                     break;
                 case "GenerarVenta":
+                    // Actualizar stock
+                    for (int i = 0; i < lista.size(); i++) {
+                        Producto pr = new Producto();
+
+                        int cantidad = lista.get(i).getCantidad();
+                        int idProducto = lista.get(i).getIdProducto();
+
+                        ProductoDAO prDao = new ProductoDAO();
+                        pr = prDao.buscar(idProducto);
+
+                        int sac = pr.getStock() - cantidad;
+                        prDao.actualizarStock(idProducto, sac);
+                    }
+
                     // Guardar
                     v.setIdCliente(c.getId());
                     v.setIdEmpleado(2);
