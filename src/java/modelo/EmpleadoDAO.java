@@ -8,6 +8,7 @@ import config.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,15 +24,15 @@ public class EmpleadoDAO {
     ResultSet rs;
     int r;
 
-    public Empleado Validar(String user, String dni) {
+    public Empleado Validar(Empleado item) {
         Empleado em = new Empleado();
-        String sql = "SELECT * FROM empleado WHERE User =? AND Dni =?";
+        String sql = "SELECT * FROM empleado WHERE User =? AND Clave =?";
 
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
-            ps.setString(1, user);
-            ps.setString(2, dni);
+            ps.setString(1, item.getUser());
+            ps.setString(2, item.getClave());
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -39,11 +40,12 @@ public class EmpleadoDAO {
                 em.setUser(rs.getString("User"));
                 em.setDni(rs.getString("Dni"));
                 em.setNom(rs.getString("Nombres"));
+                em.setClave(rs.getString("Clave"));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en Empleado validar: " + e.getMessage());
         }
-
+        System.out.println("Empleado validado: " + em.toString());
         return em;
     }
 
@@ -67,7 +69,7 @@ public class EmpleadoDAO {
                 em.setUser(rs.getString(6));
                 lista.add(em);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en Empleado listar: " + e.getMessage());
         }
 
@@ -91,7 +93,7 @@ public class EmpleadoDAO {
                 emp.setEstado(rs.getString(5));
                 emp.setUser(rs.getString(6));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en Empleado listarId: " + e.getMessage());
         }
 
@@ -99,7 +101,7 @@ public class EmpleadoDAO {
     }
 
     public int agregar(Empleado em) {
-        String sql = "INSERT INTO empleado(Dni, Nombres, Telefono, Estado, User) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO empleado(Dni, Nombres, Telefono, Estado, User, Clave) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             con = cn.Conexion();
@@ -110,9 +112,10 @@ public class EmpleadoDAO {
             ps.setString(3, em.getTel());
             ps.setString(4, em.getEstado());
             ps.setString(5, em.getUser());
+            ps.setString(6, em.getClave());
 
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en Empleado agregar: " + e.getMessage());
         }
 
@@ -120,7 +123,7 @@ public class EmpleadoDAO {
     }
 
     public int actualizar(Empleado em) {
-        String sql = "UPDATE empleado SET Dni=?, Nombres=?, Telefono=?, Estado=?, User=? WHERE idEmpleado=?";
+        String sql = "UPDATE empleado SET Dni=?, Nombres=?, Telefono=?, Estado=?, User=?, Clave=? WHERE idEmpleado=?";
 
         try {
             con = cn.Conexion();
@@ -131,10 +134,11 @@ public class EmpleadoDAO {
             ps.setString(3, em.getTel());
             ps.setString(4, em.getEstado());
             ps.setString(5, em.getUser());
-            ps.setInt(6, em.getId());
+            ps.setString(6, em.getClave());
+            ps.setInt(7, em.getId());
 
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en Empleado actualizar: " + e.getMessage());
         }
 
@@ -148,7 +152,7 @@ public class EmpleadoDAO {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en Empleado eliminar: " + e.getMessage());
         }
     }

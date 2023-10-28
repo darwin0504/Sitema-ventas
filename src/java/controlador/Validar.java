@@ -11,6 +11,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.Empleado;
 import modelo.EmpleadoDAO;
 
@@ -78,17 +85,22 @@ public class Validar extends HttpServlet {
 
         if (accion.equalsIgnoreCase("Ingresar")) {
             String user = request.getParameter("txtUser");
-            String pass = request.getParameter("txtPass");
+            String pass = asegurarClave(request.getParameter("txtPass"));
 
-            em = eDao.Validar(user, pass);
+            Empleado item = new Empleado();
+            item.setUser(user);
+            item.setClave(pass);
+            em = eDao.Validar(item);
 
             if (em.getUser() != null) {
+                System.out.println("Entra if");
                 HttpSession sesion = request.getSession();
                 System.out.println("Sesion numero: " + sesion.getId());
 
                 sesion.setAttribute("usuario", em);
                 request.getRequestDispatcher("Controlador?menu=principal").forward(request, response);
             } else {
+                System.out.println("Entra else");
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
         } else {
@@ -96,6 +108,24 @@ public class Validar extends HttpServlet {
             sesion.invalidate();
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
+    }
+
+    public String asegurarClave(String textoClave) {
+        String claveSha = null;
+
+        try {
+            MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
+            sha256.update(textoClave.getBytes("UTF-8"));
+            claveSha = String.format("%064x", new BigInteger(1, sha256.digest()));
+
+           // claveSha = Base64.getEncoder().encodeToString(sha256.digest());
+        } catch (NoSuchAlgorithmException ex) {
+            System.out.println("Error Validar asegurarClave:  " + ex.getMessage());
+        } catch (UnsupportedEncodingException ex) {
+            System.out.println("Error Validar asegurarClave update clave:  " + ex.getMessage());
+        }
+
+        return claveSha;
     }
 
     /**

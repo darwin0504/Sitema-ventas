@@ -16,17 +16,26 @@ public class Empleado {
     String tel;
     String estado;
     String user;
+    String clave;
 
     public Empleado() {
     }
 
-    public Empleado(int id, String dni, String nom, String tel, String estado, String user) {
+    public Empleado(int id, String dni, String nom, String tel, String estado, String user, String clave) {
         this.id = id;
         this.dni = dni;
         this.nom = nom;
         this.tel = tel;
         this.estado = estado;
         this.user = user;
+        this.clave = clave;
+    }
+    
+    
+
+    @Override
+    public String toString() {
+        return "Empleado [IdEmpleado=" + id + ", User=" + user + ", Dni=" + dni + ", Nombres=" + nom + ", Clave=" + clave + "]";
     }
 
     public int getId() {
@@ -75,5 +84,13 @@ public class Empleado {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 }

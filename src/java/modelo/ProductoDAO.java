@@ -8,6 +8,7 @@ import config.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class ProductoDAO {
                 p.setStock(rs.getInt(4));
                 p.setEstado(rs.getString(5));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en Producto buscar: " + e.getMessage());
         }
 
@@ -58,7 +59,7 @@ public class ProductoDAO {
             ps.setInt(2, id);
             ps.executeUpdate();
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en Producto actualizarStock: " + e.getMessage());
         }
 
@@ -84,7 +85,7 @@ public class ProductoDAO {
                 pr.setEstado(rs.getString(5));
                 lista.add(pr);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en Producto listar: " + e.getMessage());
         }
 
@@ -108,7 +109,7 @@ public class ProductoDAO {
                 pr.setStock(rs.getInt(4));
                 pr.setEstado(rs.getString(5));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en Producto listarId: " + e.getMessage());
         }
 
@@ -128,7 +129,7 @@ public class ProductoDAO {
             ps.setString(4, p.getEstado());
 
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en Producto agregar: " + e.getMessage());
         }
 
@@ -149,7 +150,7 @@ public class ProductoDAO {
             ps.setInt(5, p.getId());
 
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en Producto actualizar: " + e.getMessage());
         }
 
@@ -163,7 +164,7 @@ public class ProductoDAO {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en Producto eliminar: " + e.getMessage());
         }
     }

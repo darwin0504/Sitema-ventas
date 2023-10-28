@@ -8,6 +8,7 @@ import config.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class ClienteDAO {
                 c.setDireccion(rs.getString(4));
                 c.setEstado(rs.getString(5));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en Cliente buscar: " + e.getMessage());
         }
 
@@ -65,7 +66,7 @@ public class ClienteDAO {
                 cl.setEstado(rs.getString(5));
                 lista.add(cl);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en Cliente listar: " + e.getMessage());
         }
 
@@ -88,7 +89,7 @@ public class ClienteDAO {
                 cli.setDireccion(rs.getString(4));
                 cli.setEstado(rs.getString(5));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en Cliente listarId: " + e.getMessage());
         }
 
@@ -108,7 +109,7 @@ public class ClienteDAO {
             ps.setString(4, c.getEstado());
 
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en Cliente agregar: " + e.getMessage());
         }
 
@@ -129,7 +130,7 @@ public class ClienteDAO {
             ps.setInt(5, c.getId());
 
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en Cliente actualizar: " + e.getMessage());
         }
 
@@ -143,7 +144,7 @@ public class ClienteDAO {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en Cliente eliminar: " + e.getMessage());
         }
     }

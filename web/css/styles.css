@@ -8,8 +8,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 */
 
 body {
-    /* background-color: #000;
-    color: #007bff;*/
     background-color: #f8f9fa;
 }
 .centered {
@@ -20,6 +18,4 @@ body {
 }
 .card {
     border-radius: 12px !important;
-  /*  background-color: #1a1a1a;
-    color: #fff;*/
 }
