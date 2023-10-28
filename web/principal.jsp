@@ -62,7 +62,7 @@
                 </div>
             </div>
         </nav>
-        <div class="m-4" style="height: 550px;">
+        <div class="m-4" style="height: 100vh;">
             <iframe name="myFrame" style="height: 100%; width: 100%; border: none"></iframe>
         </div>
         <script src="https://kit.fontawesome.com/7d0f323c82.js" crossorigin="anonymous"></script>
@@ -73,7 +73,6 @@
 </html>
 <%  
     } else {
-        System.out.println("Llega else");
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 %>

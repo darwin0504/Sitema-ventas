@@ -15,7 +15,7 @@ public class Producto {
     Double precio;
     int stock;
     String estado;
-    
+
     public Producto() {
     }
 
@@ -25,6 +25,11 @@ public class Producto {
         this.precio = precio;
         this.stock = stock;
         this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return "Producto [IdProducto =" + id + ", Nombres=" + nom + ", Precio=" + precio + ", Stock=" + stock + ", Estado=" + estado + "]";
     }
 
     public int getId() {

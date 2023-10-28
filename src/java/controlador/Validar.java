@@ -93,14 +93,11 @@ public class Validar extends HttpServlet {
             em = eDao.Validar(item);
 
             if (em.getUser() != null) {
-                System.out.println("Entra if");
                 HttpSession sesion = request.getSession();
-                System.out.println("Sesion numero: " + sesion.getId());
 
                 sesion.setAttribute("usuario", em);
                 request.getRequestDispatcher("Controlador?menu=principal").forward(request, response);
             } else {
-                System.out.println("Entra else");
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
         } else {

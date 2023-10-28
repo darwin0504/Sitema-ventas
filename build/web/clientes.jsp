@@ -16,8 +16,9 @@
         <title>Clientes</title>
     </head>
     <body>
-        <div class="d-flex">
-            <div class="card border-primary shadow col-sm-4">
+        <h2>Clientes</h2>
+        <div class="d-lg-flex">
+            <div class="card border-primary shadow col-lg-4">
                 <div class="card-body">
                     <form action="Controlador?menu=clientes" method="POST">
                         <div class="form-group">
@@ -41,34 +42,36 @@
                     </form>
                 </div>
             </div>
-            <div class="col-sm-8">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Dni</th>
-                            <th>Nombres</th>
-                            <th>Dirección</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var = "cl" items = "${cliente}">
+            <div class="col-12 col-lg-8 mt-5 mt-lg-0">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
                             <tr>
-                                <td>${cl.getId()}</td>
-                                <td>${cl.getDni()}</td>
-                                <td>${cl.getNom()}</td>
-                                <td>${cl.getDireccion()}</td>
-                                <td>${cl.getEstado()}</td>
-                                <td>
-                                    <a class="btn btn-outline-warning " href="Controlador?menu=clientes&accion=Editar&id=${cl.getId()}"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    <a class="btn btn-outline-danger" href="Controlador?menu=clientes&accion=Eliminar&id=${cl.getId()}"><i class="fa-solid fa-trash-can"></i></a>
-                                </td>
+                                <th>ID</th>
+                                <th>Dni</th>
+                                <th>Nombres</th>
+                                <th>Dirección</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
                             </tr>
-                        </c:forEach>
-                    </tbody> 
-                </table>
+                        </thead>
+                        <tbody>
+                            <c:forEach var = "cl" items = "${cliente}">
+                                <tr>
+                                    <td>${cl.getId()}</td>
+                                    <td>${cl.getDni()}</td>
+                                    <td>${cl.getNom()}</td>
+                                    <td>${cl.getDireccion()}</td>
+                                    <td>${cl.getEstado()}</td>
+                                    <td>
+                                        <a class="btn btn-outline-warning " href="Controlador?menu=clientes&accion=Editar&id=${cl.getId()}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a class="btn btn-outline-danger" href="Controlador?menu=clientes&accion=Eliminar&id=${cl.getId()}"><i class="fa-solid fa-trash-can"></i></a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </tbody> 
+                    </table>
+                </div>
             </div>
         </div>
         <script src="https://kit.fontawesome.com/7d0f323c82.js" crossorigin="anonymous"></script>

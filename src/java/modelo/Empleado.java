@@ -30,8 +30,6 @@ public class Empleado {
         this.user = user;
         this.clave = clave;
     }
-    
-    
 
     @Override
     public String toString() {

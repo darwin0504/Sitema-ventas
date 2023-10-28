@@ -16,8 +16,9 @@
         <title>Productos</title>
     </head>
     <body>
-        <div class="d-flex">
-            <div class="card border-primary shadow col-sm-4">
+        <h2>Productos</h2>
+        <div class="d-lg-flex">
+            <div class="card border-primary shadow col-12 col-lg-4">
                 <div class="card-body">
                     <form action="Controlador?menu=productos" method="POST">
                         <div class="form-group">
@@ -41,34 +42,36 @@
                     </form>
                 </div>
             </div>
-            <div class="col-sm-8">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th>Stock</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var = "pr" items = "${producto}">
+            <div class="col-12 col-lg-8 mt-5 mt-lg-0">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
                             <tr>
-                                <td>${pr.getId()}</td>
-                                <td>${pr.getNom()}</td>
-                                <td>${pr.getPrecio()}</td>
-                                <td>${pr.getStock()}</td>
-                                <td>${pr.getEstado()}</td>
-                                <td>
-                                    <a class="btn btn-outline-warning" href="Controlador?menu=productos&accion=Editar&id=${pr.getId()}"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    <a class="btn btn-outline-danger" href="Controlador?menu=productos&accion=Eliminar&id=${pr.getId()}"><i class="fa-solid fa-trash-can"></i></a>
-                                </td>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
                             </tr>
-                        </c:forEach>
-                    </tbody> 
-                </table>
+                        </thead>
+                        <tbody>
+                            <c:forEach var = "pr" items = "${producto}">
+                                <tr>
+                                    <td>${pr.getId()}</td>
+                                    <td>${pr.getNom()}</td>
+                                    <td>${pr.getPrecio()}</td>
+                                    <td>${pr.getStock()}</td>
+                                    <td>${pr.getEstado()}</td>
+                                    <td>
+                                        <a class="btn btn-outline-warning" href="Controlador?menu=productos&accion=Editar&id=${pr.getId()}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a class="btn btn-outline-danger" href="Controlador?menu=productos&accion=Eliminar&id=${pr.getId()}"><i class="fa-solid fa-trash-can"></i></a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </tbody> 
+                    </table>
+                </div>
             </div>
         </div>
         <script src="https://kit.fontawesome.com/7d0f323c82.js" crossorigin="anonymous"></script>

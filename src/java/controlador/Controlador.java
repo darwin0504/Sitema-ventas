@@ -200,9 +200,8 @@ public class Controlador extends HttpServlet {
                     request.getRequestDispatcher("Controlador?menu=productos&accion=Listar").forward(request, response);
                     break;
                 case "Editar":
-                   idp = Integer.parseInt(request.getParameter("id"));
-                        
-                    System.out.println(idp);
+                    idp = Integer.parseInt(request.getParameter("id"));
+
                     Producto prd = pDao.listarId(idp);
                     request.setAttribute("getProducto", prd);
                     request.getRequestDispatcher("Controlador?menu=productos&accion=Listar").forward(request, response);
@@ -237,6 +236,7 @@ public class Controlador extends HttpServlet {
         if (menu.equals("registrarVenta")) {
             switch (accion) {
                 case "BuscarCliente":
+                    request.setAttribute("numSerie", numeroSerie);
                     String dni = request.getParameter("codigoCliente");
                     c.setDni(dni);
                     c = cDao.buscar(dni);
@@ -244,6 +244,7 @@ public class Controlador extends HttpServlet {
                     request.setAttribute("c", c);
                     break;
                 case "BuscarProducto":
+                    request.setAttribute("numSerie", numeroSerie);
                     int id = Integer.parseInt(request.getParameter("codigoProducto"));
                     p = pDao.listarId(id);
 
@@ -252,6 +253,7 @@ public class Controlador extends HttpServlet {
                     request.setAttribute("lista", lista);
                     break;
                 case "Agregar":
+                    request.setAttribute("numSerie", numeroSerie);
                     request.setAttribute("c", c);
                     totalPagar = 0.0;
                     item = item + 1;
@@ -312,6 +314,27 @@ public class Controlador extends HttpServlet {
                         v.setMonto(lista.get(i).getMonto());
                         vDao.guardarDetalleVenta(v);
                     }
+                    break;
+                case "Cancelar":
+                    request.setAttribute("numSerie", numeroSerie);
+                    lista.clear();
+                    totalPagar = 0.0;
+                    break;
+                case "Eliminar":
+                    request.setAttribute("numSerie", numeroSerie);
+                    int idProducto = Integer.parseInt(request.getParameter("idProducto"));
+
+                    for (int i = 0; i < lista.size(); i++) {
+                        if (lista.get(i).getIdProducto() == idProducto) {
+                            double valorProductoEliminar = lista.get(i).getSubTotal();
+                            totalPagar -= valorProductoEliminar;
+                            lista.remove(i);
+                            break;
+                        }
+                    }
+
+                    request.setAttribute("totalPagar", totalPagar);
+                    request.setAttribute("lista", lista);
                     break;
                 default:
                     v = new Venta();
