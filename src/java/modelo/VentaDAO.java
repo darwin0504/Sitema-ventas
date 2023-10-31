@@ -24,7 +24,7 @@ public class VentaDAO {
 
     public String generarSerie() {
         String numeroSerie = "";
-        String sql = "SELECT max(NumeroSerie) FROM ventas";
+        String sql = "SELECT NumeroSerie FROM ventas";
 
         try {
             con = cn.Conexion();

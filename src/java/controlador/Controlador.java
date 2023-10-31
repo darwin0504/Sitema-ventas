@@ -13,6 +13,7 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Cliente;
@@ -307,7 +308,7 @@ public class Controlador extends HttpServlet {
                     v.setIdCliente(c.getId());
                     v.setIdEmpleado(2);
                     v.setNumSerie(numeroSerie);
-                    v.setFecha("2023-10-25");
+                    v.setFecha("2023-10-31");
                     v.setMonto(totalPagar);
                     v.setEstado("1");
                     vDao.guardarVenta(v);
@@ -323,6 +324,13 @@ public class Controlador extends HttpServlet {
                         v.setMonto(lista.get(i).getMonto());
                         vDao.guardarDetalleVenta(v);
                     }
+
+                    int incrementarNumSerie = Integer.parseInt(numeroSerie);
+
+                    GenerarSerie generarS = new GenerarSerie();
+                    numeroSerie = generarS.numeroSerie(incrementarNumSerie);
+                    System.out.println(numeroSerie);
+                    request.setAttribute("numSerie", numeroSerie);
                     break;
                 case "Cancelar":
                     request.setAttribute("numSerie", numeroSerie);

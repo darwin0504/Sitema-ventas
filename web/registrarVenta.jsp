@@ -16,14 +16,14 @@
         <title>Ventas</title>
         <style>
             @media print {
-                .parteDatos, .btn, .accion {
+                .title, .parteDatos, .btn, .accion {
                     display: none;
                 }
             }
         </style>
     </head>
     <body>
-        <h2 class="ml-3">Registrar venta</h2>
+        <h2 class="ml-3 title">Registrar venta</h2>
         <div class="d-xl-flex">
             <div class="col-12 col-xl-5 parteDatos">
                 <div class="card border-primary shadow">
