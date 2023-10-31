@@ -9,6 +9,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Cliente;
@@ -81,12 +85,15 @@ public class Controlador extends HttpServlet {
                     String tel = request.getParameter("txtTel");
                     String estado = request.getParameter("txtEstado");
                     String user = request.getParameter("txtUsuario");
+                    String clave = request.getParameter("txtPass");
+                    String hashedClave = asegurarClave(clave);
 
                     em.setDni(dni);
                     em.setNom(nom);
                     em.setTel(tel);
                     em.setEstado(estado);
                     em.setUser(user);
+                    em.setClave(hashedClave);
                     eDao.agregar(em);
 
                     request.getRequestDispatcher("Controlador?menu=empleado&accion=Listar").forward(request, response);
@@ -95,6 +102,8 @@ public class Controlador extends HttpServlet {
                     ide = Integer.parseInt(request.getParameter("id"));
                     Empleado e = eDao.listarId(ide);
                     request.setAttribute("getEmpleado", e);
+                    request.setAttribute("isEditing", true);
+
                     request.getRequestDispatcher("Controlador?menu=empleado&accion=Listar").forward(request, response);
                     break;
                 case "Actualizar":
@@ -360,6 +369,23 @@ public class Controlador extends HttpServlet {
             }
             request.getRequestDispatcher("registrarVenta.jsp").forward(request, response);
         }
+    }
+
+    public String asegurarClave(String textoClave) {
+        String claveSha = null;
+
+        try {
+            MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
+            sha256.update(textoClave.getBytes("UTF-8"));
+            claveSha = String.format("%064x", new BigInteger(1, sha256.digest()));
+
+        } catch (NoSuchAlgorithmException ex) {
+            System.out.println("Error Validar asegurarClave:  " + ex.getMessage());
+        } catch (UnsupportedEncodingException ex) {
+            System.out.println("Error Validar asegurarClave update clave:  " + ex.getMessage());
+        }
+
+        return claveSha;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -92,6 +92,7 @@ public class EmpleadoDAO {
                 emp.setTel(rs.getString(4));
                 emp.setEstado(rs.getString(5));
                 emp.setUser(rs.getString(6));
+                 emp.setClave(rs.getString(7));
             }
         } catch (SQLException e) {
             System.out.println("Error en Empleado listarId: " + e.getMessage());
@@ -123,7 +124,7 @@ public class EmpleadoDAO {
     }
 
     public int actualizar(Empleado em) {
-        String sql = "UPDATE empleado SET Dni=?, Nombres=?, Telefono=?, Estado=?, User=?, Clave=? WHERE idEmpleado=?";
+        String sql = "UPDATE empleado SET Dni=?, Nombres=?, Telefono=?, Estado=?, User=? WHERE idEmpleado=?";
 
         try {
             con = cn.Conexion();
@@ -134,8 +135,7 @@ public class EmpleadoDAO {
             ps.setString(3, em.getTel());
             ps.setString(4, em.getEstado());
             ps.setString(5, em.getUser());
-            ps.setString(6, em.getClave());
-            ps.setInt(7, em.getId());
+            ps.setInt(6, em.getId());
 
             ps.executeUpdate();
         } catch (SQLException e) {

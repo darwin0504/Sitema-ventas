@@ -40,26 +40,30 @@
                             <label>Usuario</label>
                             <input type="text" value="${getEmpleado.getUser()}"  name="txtUsuario" class="form-control">
                         </div>
-                        <input type="submit" name="accion"  value="Agregar" class="btn btn-info">
-                        <input type="submit" name="accion"  value="Actualizar" class="btn btn-success">
-                    </form>
+                        <div class="form-group">
+                            <label>Contraseña</label>
+                            <input type="password" value="${getEmpleado.getClave()}"  name="txtPass" class="form-control" <c:if test="${isEditing}">readonly</c:if>>
+                            </div>
+                            <input type="submit" name="accion"  value="Agregar" class="btn btn-info">
+                            <input type="submit" name="accion"  value="Actualizar" class="btn btn-success">
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <div class="col-12 col-lg-8 mt-5 mt-lg-0">
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Dni</th>
-                                <th>Nombres</th>
-                                <th>Telefono</th>
-                                <th>Estado</th>
-                                <th>Usuario</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                <div class="col-12 col-lg-8 mt-5 mt-lg-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Dni</th>
+                                    <th>Nombres</th>
+                                    <th>Telefono</th>
+                                    <th>Estado</th>
+                                    <th>Usuario</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                             <c:forEach var = "em" items = "${empleado}">
                                 <tr>
                                     <td>${em.getId()}</td>

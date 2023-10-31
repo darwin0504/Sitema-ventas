@@ -115,7 +115,6 @@ public class Validar extends HttpServlet {
             sha256.update(textoClave.getBytes("UTF-8"));
             claveSha = String.format("%064x", new BigInteger(1, sha256.digest()));
 
-           // claveSha = Base64.getEncoder().encodeToString(sha256.digest());
         } catch (NoSuchAlgorithmException ex) {
             System.out.println("Error Validar asegurarClave:  " + ex.getMessage());
         } catch (UnsupportedEncodingException ex) {
